@@ -73,15 +73,6 @@ st.caption(
     f" {hr}"
 )
 
-# age = st.slider("กรุณาเลือกข้อมูล Age")
-# sex = st.slider("กรุณากรอกเพศ (Sex) [0 = หญิง, 1 = ชาย]",min_value=0,max_value=1,value=1,step=1,)
-# cp = st.slider("กรุณาเลือกข้อมูล ChestPainType")
-# hr = st.slider("กรุณาเลือกข้อมูล MaxHR")
-
-# age = st.number_input("กรุณาเลือกข้อมูล Age", min_value=1, max_value=120, value=45) 
-# sex = st.number_input("กรุณาเลือกข้อมูล sex")
-# cp = st.number_input("กรุณาเลือกข้อมูล ChestPainType")
-# hr = st.number_input("กรุณาเลือกข้อมูล MaxHR")
 
 if st.button("ทำนายผล"):
     # 1. แยกข้อมูลสอนโมเดล (X = 4 คอลัมน์, y = คอลัมน์คำตอบ HeartDisease)
@@ -98,36 +89,10 @@ if st.button("ทำนายผล"):
     out = Knn_model.predict(x_input)
     st.write("ผลการทำนาย (0 = ปกติ, 1 = เสี่ยงโรคหัวใจ):", out[0])
 
-    # 4. ตรวจสอบเงื่อนไขผลลัพธ์ (ยึดโครงสร้างเดิม if และ else)
+    # 4. ตรวจสอบเงื่อนไขผลลัพธ์ (ใช้ st.image โดยตรง และจับคู่รูปให้ตรงกับ col1/col2)
     if out[0] == 0:
-        show_image_safe("./img/Heard1.jpg")
+        st.image("./img/Heard2.png")  # 0 = ไม่เป็นโรคหัวใจ
     else:
-        show_image_safe("./img/Heard2.jpg")
-else:
-    st.write("กรุณากรอกข้อมูลด้านบนให้ครบถ้วน แล้วกดปุ่ม 'ทำนายผล'")
-
-
-if st.button("ทำนายผล"):
-    # 1. แยกข้อมูลสอนโมเดล (X = 4 คอลัมน์, y = คอลัมน์คำตอบ HeartDisease)
-    feature_cols = ["Age", "Sex", "ChestPainType", "MaxHR"]
-    X = dt[feature_cols]
-    y = dt["HeartDisease"]
-
-    # 2. สร้างและฝึกสอนโมเดล K-Nearest Neighbors
-    Knn_model = KNeighborsClassifier(n_neighbors=3)
-    Knn_model.fit(X, y)
-
-    # 3. นำค่าที่รับมาจากหน้าเว็บมาจัดเรียงเป็น Array 2 มิติ และทำนายผล
-    x_input = np.array([[age, sex, cp, hr]])
-
-    # **สำคัญ: ต้องคำนวณค่าตัวแปร out ให้เสร็จก่อน แล้วค่อยสั่ง st.write() แสดงผล**
-    out = Knn_model.predict(x_input)
-    st.write("ผลการทำนาย (0 = ปกติ, 1 = เสี่ยงโรคหัวใจ):", out[0])
-
-    # 4. ตรวจสอบเงื่อนไขผลลัพธ์ (ยึดโครงสร้างเดิม if และ else)
-    if out[0] == 0:
-        show_image_safe("./img/Heard1.jpg")
-    else:
-        show_image_safe("./img/Heard2.jpg")
+        st.image("./img/Heard1.jpg")  # 1 = เป็นโรคหัวใจ
 else:
     st.write("กรุณากรอกข้อมูลด้านบนให้ครบถ้วน แล้วกดปุ่ม 'ทำนายผล'")
