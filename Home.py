@@ -83,6 +83,29 @@ st.caption(
 # cp = st.number_input("กรุณาเลือกข้อมูล ChestPainType")
 # hr = st.number_input("กรุณาเลือกข้อมูล MaxHR")
 
+if st.button("ทำนายผล"):
+    # 1. แยกข้อมูลสอนโมเดล (X = 4 คอลัมน์, y = คอลัมน์คำตอบ HeartDisease)
+    feature_cols = ["Age", "Sex", "ChestPainType", "MaxHR"]
+    X = dt[feature_cols]
+    y = dt["HeartDisease"]
+
+    # 2. สร้างและฝึกสอนโมเดล K-Nearest Neighbors
+    Knn_model = KNeighborsClassifier(n_neighbors=3)
+    Knn_model.fit(X, y)
+
+    # 3. นำค่าที่รับมาจากหน้าเว็บมาจัดเรียงเป็น Array 2 มิติ และทำนายผล
+    x_input = np.array([[age, sex, cp, hr]])
+    out = Knn_model.predict(x_input)
+    st.write("ผลการทำนาย (0 = ปกติ, 1 = เสี่ยงโรคหัวใจ):", out[0])
+
+    # 4. ตรวจสอบเงื่อนไขผลลัพธ์ (ยึดโครงสร้างเดิม if และ else)
+    if out[0] == 0:
+        show_image_safe("./img/Heard1.jpg")
+    else:
+        show_image_safe("./img/Heard2.jpg")
+else:
+    st.write("กรุณากรอกข้อมูลด้านบนให้ครบถ้วน แล้วกดปุ่ม 'ทำนายผล'")
+
 
 if st.button("ทำนายผล"):
     # 1. แยกข้อมูลสอนโมเดล (X = 4 คอลัมน์, y = คอลัมน์คำตอบ HeartDisease)
@@ -101,10 +124,10 @@ if st.button("ทำนายผล"):
     out = Knn_model.predict(x_input)
     st.write("ผลการทำนาย (0 = ปกติ, 1 = เสี่ยงโรคหัวใจ):", out[0])
 
-    # 4. ตรวจสอบเงื่อนไขผลลัพธ์ (ย่อหน้า 4 เคาะตรงกันทั้ง if และ else)
+    # 4. ตรวจสอบเงื่อนไขผลลัพธ์ (ยึดโครงสร้างเดิม if และ else)
     if out[0] == 0:
-        st.image("./img/Heard1.jpg")
+        show_image_safe("./img/Heard1.jpg")
     else:
-        st.image("./img/Heard2.jpg")
+        show_image_safe("./img/Heard2.jpg")
 else:
     st.write("กรุณากรอกข้อมูลด้านบนให้ครบถ้วน แล้วกดปุ่ม 'ทำนายผล'")
