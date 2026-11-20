@@ -9,12 +9,16 @@ st.header("โปรเจคการจำแนกข้อมูลดอก
 col1, col2, col3 = st.columns(3)
 
 with col1:
-   st.header("Versicolor")
+   st.header("เป็นโรคหัวใจ")
    st.image("./img/Heard1.jpg")
 
 with col2:
-   st.header("Verginiga")
+   st.header("ไม่เป็นโรคหัวใจ")
    st.image("./img/Heard2.jpg")
+
+with col2:
+   st.header("Profile")
+   st.image("./img/warapon.jpg")
 
 
 html_7 = """
@@ -33,12 +37,12 @@ dt3 = dt['ChestPainType'].mean()
 dt4 = dt['MaxHR'].mean()
 
 dx = [dt1, dt2, dt3, dt4]
-dx2 = pd.DataFrame(dx, index=["d1", "d2", "d3", "d4"])
+dx2 = pd.DataFrame(dx, index=["age", "sex", "cp", "hr"], columns=["ค่าเฉลี่ย"])
 
 if st.button("แสดงการจินตทัศน์ข้อมูล"):
    #st.write(dt.head(10))
    st.bar_chart(dx2)
-   st.button("ไม่แสดงข้อมูล")
+   # st.button("ไม่แสดงข้อมูล")
 else:
     st.write("ไม่แสดงข้อมูล")
 
@@ -50,6 +54,8 @@ html_8 = """
 st.markdown(html_8, unsafe_allow_html=True)
 st.markdown("")
 
+#รับค่าอินพุตให้ครบ 11 คอลัมน์ตามไฟล์ Heart3csv
+col1, col2 = st.coiumns(2)
 
 age = st.slider("กรุณาเลือกข้อมูล Age")
 sex = st.slider("กรุณาเลือกข้อมูล Sex")
@@ -61,7 +67,6 @@ sex = st.number_input("กรุณาเลือกข้อมูล sex")
 cp = st.number_input("กรุณาเลือกข้อมูล ChestPainType")
 hr = st.number_input("กรุณาเลือกข้อมูล MaxHR")
 
-
 if st.button("ทำนายผล"):
    #st.write("ทำนาย")
    #dt = pd.read_csv("./data/iris.csv") 
@@ -71,7 +76,7 @@ if st.button("ทำนายผล"):
    Knn_model = KNeighborsClassifier(n_neighbors=3)
    Knn_model.fit(X, y)  
 
-   x_input = np.array([[age, sex, cp, hr]]) #ข้อมูลใหม่สำหรับทำนาย
+   x_input = np.array([[pt_len, pt_wd, sp_len, sp_wd]]) #ข้อมูลใหม่สำหรับทำนาย
 
    st.write(Knn_model.predict(x_input))   
    out=Knn_model.predict(x_input)
