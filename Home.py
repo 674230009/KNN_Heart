@@ -14,7 +14,7 @@ with col1:
 
 with col2:
    st.header("ไม่เป็นโรคหัวใจ")
-   st.image("./img/Heard2.jpg")
+   st.image("./img/Heard2.png")
 
 with col2:
    st.header("Profile")
