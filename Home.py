@@ -95,10 +95,9 @@ if st.button("ทำนายผล"):
 
     # 3. นำค่าที่รับมาจากหน้าเว็บมาจัดเรียงเป็น Array 2 มิติ และทำนายผล
     x_input = np.array([[age, sex, cp, hr]])
-    out = Knn_model.predict(x_input)
-
     # แสดงค่าตัวเลขที่โมเดลทำนายได้
-    st.write("ผลการทำนาย (0 = ปกติ, 1 = เสี่ยงโรคหัวใจ):", out[0])
+    st.write(Knn_model.predict(x_input))
+    out = Knn_model.predict(x_input)
 
     # 4. ตรวจสอบเงื่อนไขผลลัพธ์ (ตัด elif 'Versicolor' ออก ใช้แค่ if และ else)
     # หมายเหตุ: สังเกตว่า if และ else ด้านล่างนี้จะย่อหน้าเข้ามา 4 เคาะตรงกันเป๊ะ
