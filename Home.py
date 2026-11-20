@@ -63,7 +63,7 @@ with in_col1:
     sex = st.number_input("กรุณากรอกเพศ (Sex) [0 = หญิง, 1 = ชาย]",min_value=0,max_value=1,value=1,step=1,)
 
 with in_col2:
-    cp = st.number_input("อาการเจ็บหน้าอก (ChestPainType) [0=ASY, 1=ATA, 2=NAP, 3=TA]",min_value=0,max_value=3,value=1,step=1,)
+    cp = st.number_input("อาการเจ็บหน้าอก (ChestPainType)",min_value=0,max_value=3,value=1,step=1,)
 
     hr = st.number_input("อัตราการเต้นหัวใจสูงสุด (MaxHR) [50 - 250 ครั้ง/นาที]",min_value=50,max_value=250,value=150,step=1,)
 
