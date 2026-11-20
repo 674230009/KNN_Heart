@@ -16,7 +16,7 @@ with col2:
    st.header("ไม่เป็นโรคหัวใจ")
    st.image("./img/Heard2.png")
 
-with col2:
+with col3:
    st.header("Profile")
    st.image("./img/Warapon.jpg")
 
@@ -54,13 +54,15 @@ html_8 = """
 st.markdown(html_8, unsafe_allow_html=True)
 st.markdown("")
 
-#รับค่าอินพุตให้ครบ 11 คอลัมน์ตามไฟล์ Heart3csv
-col1, col2 = st.coiumns(2)
-
 age = st.slider("กรุณาเลือกข้อมูล Age")
 sex = st.slider("กรุณาเลือกข้อมูล Sex")
 cp = st.slider("กรุณาเลือกข้อมูล ChestPainType")
 hr = st.slider("กรุณาเลือกข้อมูล MaxHR")
+
+age = st.number_input("กรุณาเลือกข้อมูล Age", min_value=1, max_value=120, value=45) 
+sex = st.number_input("กรุณาเลือกข้อมูล sex")
+cp = st.number_input("กรุณาเลือกข้อมูล ChestPainType")
+hr = st.number_input("กรุณาเลือกข้อมูล MaxHR")
 
 if st.button("ทำนายผล"):
    #st.write("ทำนาย")
@@ -71,7 +73,7 @@ if st.button("ทำนายผล"):
    Knn_model = KNeighborsClassifier(n_neighbors=3)
    Knn_model.fit(X, y)  
 
-   x_input = np.array([[pt_len, pt_wd, sp_len, sp_wd]]) #ข้อมูลใหม่สำหรับทำนาย
+   x_input = np.array([[age, sex, cp, hr]]) #ข้อมูลใหม่สำหรับทำนาย
 
    st.write(Knn_model.predict(x_input))   
    out=Knn_model.predict(x_input)
