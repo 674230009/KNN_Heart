@@ -57,15 +57,11 @@ st.markdown("")
 #รับค่าอินพุตให้ครบ 11 คอลัมน์ตามไฟล์ Heart3csv
 col1, col2 = st.coiumns(2)
 
+with col1:
 age = st.slider("กรุณาเลือกข้อมูล Age")
 sex = st.slider("กรุณาเลือกข้อมูล Sex")
 cp = st.slider("กรุณาเลือกข้อมูล ChestPainType")
 hr = st.slider("กรุณาเลือกข้อมูล MaxHR")
-
-age = st.number_input("กรุณาเลือกข้อมูล Age", min_value=1, max_value=120, value=45) 
-sex = st.number_input("กรุณาเลือกข้อมูล sex")
-cp = st.number_input("กรุณาเลือกข้อมูล ChestPainType")
-hr = st.number_input("กรุณาเลือกข้อมูล MaxHR")
 
 if st.button("ทำนายผล"):
    #st.write("ทำนาย")
