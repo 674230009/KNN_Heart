@@ -13,11 +13,11 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
     st.header("heart disease")
-    st.image("./img/Heard1.jpg")
+    st.image("./img/Heard1.png")
 
 with col2:
     st.header("no history of heart disease")
-    st.image("./img/Heard2.png")
+    st.image("./img/Heard2.jpg")
 
 with col3:
     st.header("Profile")
@@ -100,8 +100,8 @@ if st.button("ทำนายผล"):
 
     # 4. ตรวจสอบเงื่อนไขผลลัพธ์ (ใช้ st.image โดยตรง และจับคู่รูปให้ตรงกับ col1/col2)
     if out[0] == 0:
-        st.image("./img/Heard2.png")  # 0 = ไม่เป็นโรคหัวใจ
+        st.image("./img/Heard1.png")  # 0 = ไม่เป็นโรคหัวใจ
     else:
-        st.image("./img/Heard1.jpg")  # 1 = เป็นโรคหัวใจ
+        st.image("./img/Heard2.jpg")  # 1 = เป็นโรคหัวใจ
 else:
     st.write("กรุณากรอกข้อมูลด้านบนให้ครบถ้วน แล้วกดปุ่ม 'ทำนายผล'")
