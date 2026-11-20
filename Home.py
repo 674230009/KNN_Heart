@@ -71,8 +71,18 @@ with in_col2:
 st.caption(
     f"ข้อมูลที่เลือกปัจจุบัน -> อายุ: {age} ปี | เพศ: {sex} | อาการเจ็บหน้าอก: {cp} | ชีพจรสูงสุด:"
     f" {hr}"
-    
-    )
+)
+
+# age = st.slider("กรุณาเลือกข้อมูล Age")
+# sex = st.slider("กรุณากรอกเพศ (Sex) [0 = หญิง, 1 = ชาย]",min_value=0,max_value=1,value=1,step=1,)
+# cp = st.slider("กรุณาเลือกข้อมูล ChestPainType")
+# hr = st.slider("กรุณาเลือกข้อมูล MaxHR")
+
+# age = st.number_input("กรุณาเลือกข้อมูล Age", min_value=1, max_value=120, value=45) 
+# sex = st.number_input("กรุณาเลือกข้อมูล sex")
+# cp = st.number_input("กรุณาเลือกข้อมูล ChestPainType")
+# hr = st.number_input("กรุณาเลือกข้อมูล MaxHR")
+
 if st.button("ทำนายผล"):
     # 1. แยกข้อมูลสอนโมเดล (X = 4 คอลัมน์, y = คอลัมน์คำตอบ HeartDisease)
     feature_cols = ["Age", "Sex", "ChestPainType", "MaxHR"]
@@ -85,12 +95,12 @@ if st.button("ทำนายผล"):
 
     # 3. นำค่าที่รับมาจากหน้าเว็บมาจัดเรียงเป็น Array 2 มิติ และทำนายผล
     x_input = np.array([[age, sex, cp, hr]])
-
     # แสดงค่าตัวเลขที่โมเดลทำนายได้
-    st.write(Knn_model.predict(x_input))
+      st.write("ผลการทำนาย (0 = ปกติ, 1 = เสี่ยงโรคหัวใจ):", out[0])
     out = Knn_model.predict(x_input)
 
-    # 4. ตรวจสอบเงื่อนไขผลลัพธ์ (ยึดโครงสร้าง if และ else ระดับย่อหน้า 4 เคาะ)
+    # 4. ตรวจสอบเงื่อนไขผลลัพธ์ (ตัด elif 'Versicolor' ออก ใช้แค่ if และ else)
+    # หมายเหตุ: สังเกตว่า if และ else ด้านล่างนี้จะย่อหน้าเข้ามา 4 เคาะตรงกันเป๊ะ
     if out[0] == 0:
         st.image("./img/Heard1.jpg")
     else:
