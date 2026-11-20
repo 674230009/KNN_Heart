@@ -24,13 +24,13 @@ html_7 = """
 """
 st.markdown(html_7, unsafe_allow_html=True)
 st.markdown("")
-dt = pd.read_csv("./data/iris.csv")
+dt = pd.read_csv("./data/Heart3.csv")
 st.write(dt.head(10))
 
-dt1 = dt['petallength'].sum()
-dt2 = dt['petalwidth'].sum()
-dt3 = dt['sepallength'].sum()
-dt4 = dt['sepalwidth'].sum()
+dt1 = dt['Age'].mean()
+dt2 = dt['Sex'].mean()
+dt3 = dt['ChestPainType'].mean()
+dt4 = dt['MaxHR'].mean()
 
 dx = [dt1, dt2, dt3, dt4]
 dx2 = pd.DataFrame(dx, index=["d1", "d2", "d3", "d4"])
@@ -51,11 +51,16 @@ st.markdown(html_8, unsafe_allow_html=True)
 st.markdown("")
 
 
-pt_len = st.slider("กรุณาเลือกข้อมูล petal.length")
-pt_wd = st.slider("กรุณาเลือกข้อมูล petal.width")
+age = st.slider("กรุณาเลือกข้อมูล Age")
+sex = st.slider("กรุณาเลือกข้อมูล Sex")
+cp = st.slider("กรุณาเลือกข้อมูล ChestPainType")
+hr = st.slider("กรุณาเลือกข้อมูล MaxHR")
 
-sp_len = st.number_input("กรุณาเลือกข้อมูล sepal.length")
-sp_wd = st.number_input("กรุณาเลือกข้อมูล sepal.width")
+age = st.number_input("กรุณาเลือกข้อมูล Age", min_value=1, max_value=120, value=45) 
+sex = st.number_input("กรุณาเลือกข้อมูล sex")
+cp = st.number_input("กรุณาเลือกข้อมูล ChestPainType")
+hr = st.number_input("กรุณาเลือกข้อมูล MaxHR")
+
 
 if st.button("ทำนายผล"):
    #st.write("ทำนาย")
@@ -66,16 +71,14 @@ if st.button("ทำนายผล"):
    Knn_model = KNeighborsClassifier(n_neighbors=3)
    Knn_model.fit(X, y)  
 
-   x_input = np.array([[pt_len, pt_wd, sp_len, sp_wd]]) #ข้อมูลใหม่สำหรับทำนาย
+   x_input = np.array([[age, sex, cp, hr]]) #ข้อมูลใหม่สำหรับทำนาย
 
    st.write(Knn_model.predict(x_input))   
    out=Knn_model.predict(x_input)
 
    if out[0] == 'Setosa':
-    st.image("./img/iris1.jpg")
-   elif out[0] == 'Versicolor':       
-    st.image("./img/iris2.jpg")
+    st.image("./img/Heard1.jpg")
    else:
-    st.image("./img/iris3.jpg")
+    st.image("./img/Heard2.jpg")
 else:
     st.write("ไม่ทำนาย")
