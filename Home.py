@@ -12,18 +12,17 @@ st.header("Heart Disease")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.header("heart disease")
-    st.image("./img/Heard1.png")
+    st.subheader("Heart Disease")
+    st.image("./img/Heard2.png", width=220)  # รูปหัวใจวาย (เป็นโรคหัวใจ)
 
 with col2:
-    st.header("no history of heart disease")
-    st.image("./img/Heard2.jpg")
+    st.subheader("No Heart Disease")
+    st.image("./img/Heard1.jpg", width=220)  # รูปหัวใจปกติ (ไม่เป็นโรคหัวใจ)
 
 with col3:
-    st.header("Profile")
-    st.image("./img/Warapon.jpg")
-
-
+    st.subheader("Profile")
+    st.image("./img/Warapon.jpg", width=220)  # รูปโปรไฟล์ปรับขนาดให้เท่ากัน
+    
 # ==============================================================================
 # ส่วนที่ 2: ตารางข้อมูลและสถิติค่าเฉลี่ย (Mean)
 # ==============================================================================
