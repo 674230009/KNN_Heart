@@ -18,7 +18,7 @@ with col2:
 
 with col2:
    st.header("Profile")
-   st.image("./img/warapon.jpg")
+   st.image("./img/Warapon.jpg")
 
 
 html_7 = """
