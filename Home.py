@@ -57,7 +57,6 @@ st.markdown("")
 #รับค่าอินพุตให้ครบ 11 คอลัมน์ตามไฟล์ Heart3csv
 col1, col2 = st.coiumns(2)
 
-with col1:
 age = st.slider("กรุณาเลือกข้อมูล Age")
 sex = st.slider("กรุณาเลือกข้อมูล Sex")
 cp = st.slider("กรุณาเลือกข้อมูล ChestPainType")
