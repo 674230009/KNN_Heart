@@ -83,6 +83,7 @@ st.caption(
 # cp = st.number_input("กรุณาเลือกข้อมูล ChestPainType")
 # hr = st.number_input("กรุณาเลือกข้อมูล MaxHR")
 
+
 if st.button("ทำนายผล"):
     # 1. แยกข้อมูลสอนโมเดล (X = 4 คอลัมน์, y = คอลัมน์คำตอบ HeartDisease)
     feature_cols = ["Age", "Sex", "ChestPainType", "MaxHR"]
@@ -95,12 +96,12 @@ if st.button("ทำนายผล"):
 
     # 3. นำค่าที่รับมาจากหน้าเว็บมาจัดเรียงเป็น Array 2 มิติ และทำนายผล
     x_input = np.array([[age, sex, cp, hr]])
-    # แสดงค่าตัวเลขที่โมเดลทำนายได้
-      st.write("ผลการทำนาย (0 = ปกติ, 1 = เสี่ยงโรคหัวใจ):", out[0])
-    out = Knn_model.predict(x_input)
 
-    # 4. ตรวจสอบเงื่อนไขผลลัพธ์ (ตัด elif 'Versicolor' ออก ใช้แค่ if และ else)
-    # หมายเหตุ: สังเกตว่า if และ else ด้านล่างนี้จะย่อหน้าเข้ามา 4 เคาะตรงกันเป๊ะ
+    # **สำคัญ: ต้องคำนวณค่าตัวแปร out ให้เสร็จก่อน แล้วค่อยสั่ง st.write() แสดงผล**
+    out = Knn_model.predict(x_input)
+    st.write("ผลการทำนาย (0 = ปกติ, 1 = เสี่ยงโรคหัวใจ):", out[0])
+
+    # 4. ตรวจสอบเงื่อนไขผลลัพธ์ (ย่อหน้า 4 เคาะตรงกันทั้ง if และ else)
     if out[0] == 0:
         st.image("./img/Heard1.jpg")
     else:
