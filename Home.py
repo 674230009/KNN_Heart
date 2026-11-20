@@ -9,11 +9,11 @@ st.header("โปรเจคการจำแนกข้อมูลดอก
 col1, col2, col3 = st.columns(3)
 
 with col1:
-   st.header("เป็นโรคหัวใจ")
+   st.header("heart disease")
    st.image("./img/Heard1.jpg")
 
 with col2:
-   st.header("ไม่เป็นโรคหัวใจ")
+   st.header("no history of heart disease")
    st.image("./img/Heard2.png")
 
 with col3:
